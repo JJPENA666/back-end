@@ -10,6 +10,7 @@ import { BeforeInsert, BeforeUpdate, Column,
 export class CategoryEntity{
 @PrimaryGeneratedColumn('uuid')
 id:string;
+  
 //Crear
 @CreateDateColumn({
    name:'created_date',
@@ -17,6 +18,7 @@ id:string;
    default:() => 'CURRENT_TIMESTAMP',
  })
  createdAt: Date;
+ 
  //Actualizar
 @UpdateDateColumn({
  name:'updated_date',
@@ -24,17 +26,19 @@ id:string;
  default:() => 'CURRENT_TIMESTAMP',
 })
 updatedAt: Date;
-//Borrar
+  //Borrar
 @DeleteDateColumn({
  name:'deleted_date',
  type:'timestamptz',
  default:() => 'CURRENT_TIMESTAMP',
 })
 deletedAt: Date;
-//Relaciones
+  
+  //Relaciones
 @OneToMany(() => ProductEntity, (product) => product.category)
   children: ProductEntity[];
-//Columna de Titulo
+  
+    //Columna de Titulo
 @Column('varchar', {
     name:'title',
     unique:true,
@@ -50,7 +54,7 @@ deletedAt: Date;
   description: string;
 }
 
-//DECORADORES//
+  //DECORADORES//
 
 @BeforeInsert
 @BeforeUpdate
