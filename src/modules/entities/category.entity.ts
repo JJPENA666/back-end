@@ -10,6 +10,7 @@ import { BeforeInsert, BeforeUpdate, Column,
 export class CategoryEntity{
 @PrimaryGeneratedColumn('uuid')
 id:string;
+
 //Crear
 @CreateDateColumn({
    name:'created_date',
@@ -17,6 +18,7 @@ id:string;
    default:() => 'CURRENT_TIMESTAMP',
  })
  createdAt: Date;
+
  //Actualizar
 @UpdateDateColumn({
  name:'updated_date',
@@ -31,16 +33,19 @@ updatedAt: Date;
  default:() => 'CURRENT_TIMESTAMP',
 })
 deletedAt: Date;
-//Relaciones
+  //Relaciones
+
 @OneToMany(() => ProductEntity, (product) => product.category)
   children: ProductEntity[];
-//Columna de Titulo
+
+  //Columna de Titulo
 @Column('varchar', {
     name:'title',
     unique:true,
     comment:'Titulo del producto',
   })
   title: string;
+
   //Columna de Descripción
   @Column('varchar', {
     name:'description',
@@ -50,7 +55,7 @@ deletedAt: Date;
   description: string;
 }
 
-//DECORADORES//
+  //DECORADORES//
 
 @BeforeInsert
 @BeforeUpdate
@@ -70,4 +75,4 @@ async setTitle(){
   }
 
   this.email = this.email.setEmail.toLowerCase().trim;*/
-  }
+}
